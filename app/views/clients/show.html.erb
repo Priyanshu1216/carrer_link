@@ -1,0 +1,19 @@
+<%if @client.jobs.count != 0%>
+  <h2>Your total posted jobs: <%= @client.jobs.count %></h2>
+  <ul>
+  <% @client.jobs.each do |job|%>
+    <li>
+        <%= link_to job.title, job %>
+        <br>
+        <%= job.description%>
+    </li>
+    <br>
+  <% end %>
+  </ul>
+  <h3>Thought of something new?? Create here</h3>
+  <%= link_to "New Job", new_job_path %>
+<%else%>
+  <h2>You haven't posted any job</h2>
+  <h3>Thought of something new?? Create here</h3>
+  <%= link_to "New Job", new_job_path %>
+<%end%>
