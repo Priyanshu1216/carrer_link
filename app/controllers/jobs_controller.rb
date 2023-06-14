@@ -1,53 +1,49 @@
 class JobsController < ApplicationController
-  before_action :setup_client, only: %i[show new create edit destroy update index]
+  before_action :authenticate_user!, only: [:create, :new, :destroy]
   def index
-    @jobss = @client.jobs.all
+    @jobs = Job.all
   end
 
   def show
-    @job = @client.jobs.find(params[:id])
+    @job = Job.find(params[:id])
   end
 
   def new
-    @job = @client.jobs.new
+    @job = Job.new
   end
 
   def create
-    @job = @client.jobs.new(job_params)
+    @job = Job.new(job_params)
     if @job.save
-      redirect_to client_job_path(id:@job)
+      redirect_to @job
     else
       render :new
     end
   end
 
   def edit
-    @job = @client.jobs.find(params[:id])
+    @job = Job.find(params[:id])
   end
 
   def update
-    @job = @client.jobs.find(params[:id])
+    @job = Job.find(params[:id])
     if @job.update(job_params)
-      redirect_to client_job_path(id:@job,client_id:@client.id)
+      redirect_to @job
     else
       render :edit 
     end
   end
 
   def destroy
-    @job = @client.jobs.find(params[:id])
+    @job = Job.find(params[:id])
     @job.destroy
-    redirect_to root_path(client_id: @client.id)
+    redirect_to root_path
   end
 
   private
 
   def job_params
-    params.require(:job).permit(:title,:description,:salary,:experience,:location,:client_id)
-  end
-
-  def setup_client
-    @client = Client.find(params[:client_id])
+    params.require(:job).permit(:title,:description,:salary,:experience,:location)
   end
 
 end
