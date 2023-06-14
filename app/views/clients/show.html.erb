@@ -3,7 +3,7 @@
   <ul>
   <% @client.jobs.each do |job|%>
     <li>
-      <%= link_to job.title, client_job_path(id: job.id, client_id: @client.id) %>
+      <%= link_to job.title, job_path(id: job.id) %>
       <br>
       <%= job.description%>
     </li>
@@ -11,9 +11,9 @@
   <% end %>
   </ul>
   <h3>Thought of something new?? Create here</h3>
-  <%= link_to "New Job",new_client_job_path(client_id: @client.id) %>
+  <%= link_to "New Job",new_job_path %>
 <%else%>
   <h2>You haven't posted any job</h2>
   <h3>Thought of something new?? Create here</h3>
-  <%= link_to "New Job", new_client_job_path(client_id: @client.id) %>
+  <%= link_to "New Job", new_job_path %>
 <%end%>

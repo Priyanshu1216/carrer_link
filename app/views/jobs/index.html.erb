@@ -1,8 +1,8 @@
 <h1>Available jobs</h1>
 <ul>
-<% @jobss.each do |job|%>
+<% @jobs.each do |job|%>
   <li>
-    <%= link_to job.title, client_job_path(id:job.id,client_id: @client.id) %>
+    <%= link_to job.title, job_path(id: job.id) %>
     <br>
     <%= job.description%>
   </li>
