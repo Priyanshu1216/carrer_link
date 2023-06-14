@@ -5,17 +5,14 @@ class JobsController < ApplicationController
   end
 
   def show
-    # @client = Client.find(params[:client_id])
     @job = Job.find(params[:id])
   end
 
   def new
-    # @client = Client.find(params[:client_id])
     @job = Job.new
   end
 
   def create
-    # @client = Client.find(params[:client_id])
     @job = Job.new(job_params)
     if @job.save
       redirect_to @job
