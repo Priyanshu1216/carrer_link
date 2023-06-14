@@ -6,8 +6,8 @@
 <p><%= @job.experience %></p>
 <p><%= @job.location %></p>
 <ul>
-<li><%= link_to "Edit", edit_job_path(@job) %></li>
-<li><%= link_to "Destroy", job_path(@job), data: {
+<li><%= link_to "Edit", edit_client_job_path(id:@job) %></li>
+<li><%= link_to "Destroy", client_job_path(id:@job), data: {
     turbo_method: :delete,
     turbo_confirm: "Are you Sure?"
   } %></li>

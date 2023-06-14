@@ -1,51 +1,53 @@
 class JobsController < ApplicationController
+  before_action :setup_client, only: %i[show new create edit destroy update index]
   def index
-    @jobs = Job.all
+    @jobss = @client.jobs.all
   end
 
   def show
-    # @client = Client.find(params[:client_id])
-    @job = Job.find(params[:id])
+    @job = @client.jobs.find(params[:id])
   end
 
   def new
-    # @client = Client.find(params[:client_id])
-    @job = Job.new
+    @job = @client.jobs.new
   end
 
   def create
-    # @client = Client.find(params[:client_id])
-    @job = Job.new(job_params)
+    @job = @client.jobs.new(job_params)
     if @job.save
-      redirect_to @job
+      redirect_to client_job_path(id:@job)
     else
       render :new
     end
   end
 
   def edit
-    @job = Job.find(params[:id])
+    @job = @client.jobs.find(params[:id])
   end
 
   def update
-    @job = Job.find(params[:id])
+    @job = @client.jobs.find(params[:id])
     if @job.update(job_params)
-      redirect_to @job
+      redirect_to client_job_path(id:@job,client_id:@client.id)
     else
       render :edit 
     end
   end
 
   def destroy
-    @job = Job.find(params[:id])
+    @job = @client.jobs.find(params[:id])
     @job.destroy
-    redirect_to root_path
+    redirect_to root_path(client_id: @client.id)
   end
 
   private
 
   def job_params
-    params.require(:job).permit(:title,:description,:salary,:experience,:location)
+    params.require(:job).permit(:title,:description,:salary,:experience,:location,:client_id)
+  end
+
+  def setup_client
+    @client = Client.find(params[:client_id])
   end
 
 end
