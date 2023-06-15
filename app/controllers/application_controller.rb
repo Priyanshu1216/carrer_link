@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :after_sign_up
 
   protected
 
@@ -11,16 +12,16 @@ class ApplicationController < ActionController::Base
     new_user_session_path
   end
 
-   def after_sign_in_path_for(resource)
-    if resource.role == "client"
+  def after_sign_in_path_for(resource)
+    if current_user.client?
       clients_url
     else 
       jobs_path
     end
   end
 
-  def after_sign_up_path_for(resource)
-    if resource.role == "client"
+  def after_sign_up
+    if user_signed_in? && current_user.client?
       clients_url
     else 
       jobs_path
