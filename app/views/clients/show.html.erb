@@ -1,7 +1,7 @@
-<%if @client.jobs.count != 0%>
-  <h2>Your total posted jobs: <%= @client.jobs.count %></h2>
+<%if @current_user.jobs.count != 0%>
+  <h2>Your total posted jobs: <%= @current_user.jobs.count %></h2>
   <ul>
-  <% @client.jobs.each do |job|%>
+  <% @current_user.jobs.each do |job|%>
     <li>
       <%= link_to job.title, job_path(id: job.id) %>
       <br>

@@ -9,11 +9,11 @@ class JobsController < ApplicationController
   end
 
   def new
-    @job = Job.new
+    @job = current_user.jobs.new(job_params)
   end
 
   def create
-    @job = Job.new(job_params)
+    @job = current_user.jobs.new(job_params)
     if @job.save
       redirect_to @job
     else
@@ -43,7 +43,7 @@ class JobsController < ApplicationController
   private
 
   def job_params
-    params.require(:job).permit(:title,:description,:salary,:experience,:location)
+    params.require(:job).permit(:title,:description,:salary,:experience,:location,:user_id)
   end
 
 end
