@@ -5,10 +5,12 @@
 <p><%= @job.salary %></p>
 <p><%= @job.experience %></p>
 <p><%= @job.location %></p>
-<ul>
-<li><%= link_to "Edit", edit_job_path(id:@job) %></li>
-<li><%= link_to "Destroy", job_path(id:@job), data: {
-    turbo_method: :delete,
-    turbo_confirm: "Are you Sure?"
-  } %></li>
-</ul>
+<% if current_user.role == 'client' %>
+  <ul>
+  <li><%= link_to "Edit", edit_job_path(id:@job) %></li>
+  <li><%= link_to "Destroy", job_path(id:@job), data: {
+      turbo_method: :delete,
+      turbo_confirm: "Are you Sure?"
+    } %></li>
+  </ul>
+<%end%>
