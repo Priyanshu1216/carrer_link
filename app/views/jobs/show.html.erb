@@ -13,5 +13,7 @@
       turbo_confirm: "Are you Sure?"
     } %></li>
   </ul>
+<%else%>
+  <%byebug%>
+  <li><%= link_to "Apply",new_applicant_path(id: @job.id, user_id: @job.user.id)%></li>
 <%end%>
-<%= link_to "Apply"%>

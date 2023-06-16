@@ -1,10 +1,10 @@
 class ClientsController < ApplicationController
 	def index
-		@clients = Client.all
+		@users = User.where(role:'client')
 	end
 
   def show
-    @client = Client.find(params[:id])
+    @user = User.find(params[:id])
   end
 
   def new

@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   end  
   resources :clients
   resources :jobs
+  resources :applicants
+  resources :applies
 end

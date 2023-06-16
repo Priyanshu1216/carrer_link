@@ -1,7 +1,7 @@
-<%if @current_user.jobs.count != 0%>
-  <h2>Your total posted jobs: <%= @current_user.jobs.count %></h2>
+<%if @user.jobs.count != 0%>
+  <h2>Your total posted jobs: <%= @user.jobs.count %></h2>
   <ul>
-  <% @current_user.jobs.each do |job|%>
+  <% @user.jobs.each do |job|%>
     <li>
       <%= link_to job.title, job_path(id: job.id) %>
       <br>
@@ -15,5 +15,11 @@
 <%else%>
   <h2>You haven't posted any job</h2>
   <h3>Thought of something new?? Create here</h3>
-  <%= link_to "New Job", new_job_path %>
+  <%= link_to "New Job", new_job_path%>
+<%end%>
+<br>
+<% if user_signed_in? %>
+  <%= link_to "Sign out", destroy_user_session_path %>
+<% else %>
+  <%= link_to "Sign In", new_user_session_path %>
 <%end%>
