@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     if current_user.client?
-      clients_url
+      client_path(id: current_user.id)
     else 
       jobs_path
     end

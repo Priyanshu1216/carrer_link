@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  apply_date: 2023-06-16
+  job: one
+  applicant: one
+
+two:
+  apply_date: 2023-06-16
+  job: two
+  applicant: two

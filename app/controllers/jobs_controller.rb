@@ -9,7 +9,7 @@ class JobsController < ApplicationController
   end
 
   def new
-    @job = current_user.jobs.new(job_params)
+    @job = current_user.jobs.new
   end
 
   def create

@@ -1,0 +1,27 @@
+<h1>New Applicant</h1>
+
+<%= form_with model: @applicant do |form| %>
+  <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :email %><br>
+    <%= form.email_field :email %>
+  </div>
+
+  <div>
+    <%= form.label :contact %><br>
+    <%= form.text_field :contact %>
+  </div>
+
+  <div>
+    <%= form.label :skills %><br>
+    <%= form.text_area :skills %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
