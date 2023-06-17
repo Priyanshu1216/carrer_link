@@ -1,11 +1,13 @@
 <h1>Our happy Clients</h1>
 <ul>
-<% @clients.each do |client|%>
+<% @clients.each do |user|%>
   <li>
-    <%= link_to client.name, client %>
+    <%= link_to user.name, client_path(user.id) %>
   </li>
 <% end %>
 </ul>
+<br>
+<%= link_to "New Job", new_job_path %>
 <br>
 <% if user_signed_in? %>
   <%= link_to "Sign out", destroy_user_session_path %>
