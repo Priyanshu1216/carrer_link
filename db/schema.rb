@@ -10,31 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_16_115352) do
-  create_table "applicants", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.integer "contact"
-    t.text "skills"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
+ActiveRecord::Schema[7.0].define(version: 2023_06_19_045919) do
   create_table "applies", force: :cascade do |t|
     t.integer "job_id", null: false
-    t.integer "applicant_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["applicant_id"], name: "index_applies_on_applicant_id"
+    t.integer "user_id"
     t.index ["job_id"], name: "index_applies_on_job_id"
-  end
-
-  create_table "clients", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.text "address"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_applies_on_user_id"
   end
 
   create_table "jobs", force: :cascade do |t|
@@ -58,11 +41,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_16_115352) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "role"
+    t.string "name"
+    t.string "first_name"
+    t.string "last_name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "applies", "applicants"
   add_foreign_key "applies", "jobs"
   add_foreign_key "jobs", "users"
 end
