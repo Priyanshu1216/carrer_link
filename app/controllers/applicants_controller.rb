@@ -1,30 +1,30 @@
 class ApplicantsController < ApplicationController
   def new
-    @user = User.find(params[:user_id])
-    @job = @user.jobs.find(params[:id])
+    byebug
+    @job = Job.find(params[:id])
     @applicant = @job.applicants.new
   end
 
   def create
-    @user = User.find(params[:user_id])
-    @job = @user.jobs.find(params[:id])
+    @job = Job.find(params[:id])
     @applicant = @job.applicants.new(applicant_params)
     if @applicant.save
-      redirect_to applicant_path(id: @applicant.id,job_id: @job.id,user_id: @user.id)
+      byebug
+      redirect_to applicant_path(id: @applicant.id, job_id: @job.id)
     else
       render :new
     end
   end
 
   def show
-    @user = User.find(params[:user_id])
-    @job = @user.jobs.find(params[:job_id])
+    byebug
+    @job = Job.find(params[:job_id])
     @applicant = @job.applicants.find(params[:id])
   end
 
   private
 
   def applicant_params
-    params.require(:applicant).permit(:name,:email,:contact,:skills,:job_id)
+    params.require(:applicant).permit(:name,:email,:contact,:skills)
   end
 end

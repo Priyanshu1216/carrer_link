@@ -1,6 +1,17 @@
 class AppliesController < ApplicationController
-  def new
-    @job = Job.find(params[:id])
-    @applies = @job.current_user.applies.new
+
+  def index
+
+  end
+
+  def show
+
+  end
+
+  def new_apply
+    applies = Apply.new(job_id: params[:job_id], user_id: current_user.id)
+    applies.save
+
+    redirect_to root_path
   end
 end

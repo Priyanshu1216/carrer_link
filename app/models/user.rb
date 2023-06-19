@@ -6,7 +6,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :jobs, dependent: :destroy
-
+  has_many :applies, dependent: :destroy
   def default_role
     self.role ||= :applicant
   end

@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   resources :jobs
   resources :applicants
   resources :applies
+  get "new_application", to: "applies#new_apply"
 end
