@@ -1,4 +1,9 @@
 <%= form_with model: @job do |form| %>
+
+  <div>
+    <%= form.collection_select :category_id, Category.all, :id, :name,{prompt:"Choose a category"} %><br>
+  </div>
+  
   <div>
     <%= form.label :title %><br>
     <%= form.text_field :title %>
