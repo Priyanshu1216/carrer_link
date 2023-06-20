@@ -1,16 +1,21 @@
 <h1>Available jobs</h1>
-<ul>
+
+<table class="table-dark">
+<tr>
+  <th scope="col"><h1> Job Title </h1></th>
+  <div>
+    <th scope="col"><h1> Job Description</h1></th>
+  <div>
+  <th scope="col"><h1> View job </h1></th>
+</tr>
+<tr>
 <% @jobs.each do |job|%>
-  <li>
-    <%= link_to job.title, job_path(id: job.id) %>
-    <br>
-    <%= job.description%>
-  </li>
+  <td><h2 color='black'> <%= job.title %></h2></td>
+  <div>
+    <td><h4><%= job.description %></h4><td>
+  </div>
+  <td> </h2><%= link_to "view job details", job_path(id: job.id) , class:'btn btn-primary'%></td>
   <br>
+<tr>
 <% end %>
-</ul>
-<% if user_signed_in? %>
-  <%= link_to "Sign out", destroy_user_session_path %>
-<% else %>
-  <%= link_to "Sign In", new_user_session_path %>
-<%end%>
+</table>

@@ -16,5 +16,5 @@
   </ul>
   
 <%else%>
-  <li class="nav_item"><%= link_to "Apply",new_application_path(job_id: @job.id), class: "nav-link btn btn-primary" %></li>
+  <div class="nav_item"><%= link_to "Apply",new_application_path(job_id: @job.id), class: "nav-link btn btn-primary" %></div>
 <%end%>

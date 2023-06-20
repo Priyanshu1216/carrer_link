@@ -10,16 +10,33 @@
     <%= javascript_importmap_tags %>
   </head>
   <body>
-    <li class="nav-item">
-      <%= link_to "All Jobs", jobs_path, class:"nav-link"%>
-      </li>
-        <% Category.all.each do |category| %>
-          <li>
-            <%= link_to category.name, jobs_path(category: category.name), class:"nav-link" %>
-          </li>
-        <% end %>
-      </li>
-    </li>
+    <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
+      <div class="container-fluid">
+        <div class="navbar navbar-fixed-top navbar-custom">
+          <div class="nav-item">
+            <%= link_to "All Jobs", jobs_path, class: "nav-link" %>
+          </div>
+          <div class="nav-item">
+            <% if current_user.client?%>
+              <%= link_to "My Jobs", client_path(id: current_user.id), class: "nav-link" %>
+            <%end%>
+          </div>
+            <% Category.all.each do |category| %>
+            <div class="nav-item">
+              <%= link_to category.name, jobs_path(category: category.name), class:"nav-link"%>
+            </div>
+            <% end %>
+        </div>
+        <div class="nav-item">
+          <% if user_signed_in? %>
+            <%= link_to "Sign out", destroy_user_session_path,class: "nav-link btn btn-primary" %>
+          <% else %>
+            <%= link_to "Sign In", new_user_session_path,class: "nav-link btn btn-primary" %>
+          <%end%>
+        </div>
+      </div>
+    </nav>
+
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
