@@ -2,7 +2,7 @@
   <ul>
   <% @applies.each do |application|%>
     <li>
-      <%= link_to application.name, apply_path(apply_id:application.id) %>
+      <%= link_to application.name, apply_path(application.id) %>
     </li>
     <br>
   <% end %>

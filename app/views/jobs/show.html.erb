@@ -1,20 +1,27 @@
-<h2><%= @job.user.name %></h2>
-<h3><%= @job.user.email %></h3>
-<h3><%= @job.title %> </h3>
-<p><%= @job.description %></p>
-<p><%= @job.salary %></p>
-<p><%= @job.experience %></p>
-<p><%= @job.location %></p>
-<% if current_user.role == 'client' %>
-  <ul>
-  <li><%= link_to "Edit", edit_job_path(id:@job) %></li>
-  <li><%= link_to "Destroy", job_path(id:@job),data: {
-      turbo_method: :delete,
-      turbo_confirm: "Are you Sure?"
-    } %></li>
-  <li><%= link_to "All applications", applies_url(user_id:current_user.id,job_id:@job.id)%>
-  </ul>
-  
-<%else%>
-  <li class="nav_item"><%= link_to "Apply",new_application_path(job_id: @job.id), class: "nav-link btn btn-primary" %></li>
-<%end%>
+<div id="jobs">
+  <div class="job">
+    <h2>
+      <%= @job.title %>
+    </h2>
+    <p>
+      <%= @job.description %>
+    </p>
+     <p>
+      <%= @job.salary %>
+    </p>
+     <p>
+      <%= @job.experience %>
+    </p>
+     <p>
+      <%= @job.location %>
+    </p>
+    <button class="btn btn-default">
+      <%= link_to "Apply for Job", new_application_path(job_id: @job.id)%>
+    </button>
+  </div>
+</div>
+<div id="links">
+  <%= link_to "Back", root_path, class: "btn btn-sm btn-default" %>
+  <%= link_to "Edit", edit_job_path(@job), class: "btn btn-sm btn-default" %>
+  <%= link_to "Delete", job_path(@job), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-default" %>
+</div>
