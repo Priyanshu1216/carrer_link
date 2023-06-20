@@ -11,15 +11,11 @@
   <% end %>
   </ul>
   <h3>Thought of something new?? Create here</h3>
-  <%= link_to "New Job",new_job_path %>
+    <%= link_to "New Job", new_job_path, class:"btn btn-primary" %>
 <%else%>
   <h2>You haven't posted any job</h2>
   <h3>Thought of something new?? Create here</h3>
-  <%= link_to "New Job", new_job_path%>
+    <%= link_to "New Job", new_job_path, class:"btn btn-primary" %>
 <%end%>
+ <%= link_to "Back", root_path, class:"btn btn-primary" %>
 <br>
-<% if user_signed_in? %>
-  <%= link_to "Sign out", destroy_user_session_path %>
-<% else %>
-  <%= link_to "Sign In", new_user_session_path %>
-<%end%>

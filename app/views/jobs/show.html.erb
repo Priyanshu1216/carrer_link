@@ -3,25 +3,37 @@
     <h2>
       <%= @job.title %>
     </h2>
+    <h3>
+      <%= @job.user.name %>
+    </h3>
+    <p>
+      <%= @job.user.email %>
+    </p>
     <p>
       <%= @job.description %>
     </p>
-     <p>
+    <p>
       <%= @job.salary %>
     </p>
-     <p>
+    <p>
       <%= @job.experience %>
     </p>
-     <p>
+    <p>
       <%= @job.location %>
     </p>
-    <button class="btn btn-default">
-      <%= link_to "Apply for Job", new_application_path(job_id: @job.id)%>
-    </button>
+    <%if current_user.applicant?%>
+      <button class="btn btn-default">
+        <%= link_to "Apply for Job", new_application_path(job_id: @job.id) %>
+      </button>
+    <%end%>
   </div>
 </div>
 <div id="links">
   <%= link_to "Back", root_path, class: "btn btn-sm btn-default" %>
-  <%= link_to "Edit", edit_job_path(@job), class: "btn btn-sm btn-default" %>
-  <%= link_to "Delete", job_path(@job), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-default" %>
+  <% if current_user.client? %>
+    <%= link_to "Edit", edit_job_path(id:@job), class: "btn btn-sm btn-default" %>
+    <%= link_to "Delete",job_path(id:@job), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-default" %>
+    <%= link_to "All applications", applies_url(user_id:current_user.id,job_id:@job.id), class: "btn btn-sm btn-default"%>
+  <%end%>
 </div>
+
