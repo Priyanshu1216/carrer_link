@@ -14,26 +14,25 @@
         <li>
           <%= link_to "All Jobs", jobs_path %>
         </li>
-        <div class="nav-item">
-          <% if current_user.client?%>
-            <%= link_to "My Jobs", client_path(id: current_user.id), class: "nav-link" %>
+        <li>
+          <% if user_signed_in? && current_user.client?%>
+              <%= link_to "My Jobs", client_path(id: current_user.id), class: "nav-link" %>
           <%end%>
-        </div>
+        </li>
         <% Category.all.each do |category| %>
           <li>
             <%= link_to category.name, jobs_path(category: category.name) %>
           </li>
         <% end %>
       </ul>
-      <%= link_to "New Job", new_job_path, class: "navbar-text navbar-right navbar-link" %>
-    </div>
-    <div class="nav-item">
+      <div class="nav-item">
           <% if user_signed_in? %>
             <%= link_to "Sign out", destroy_user_session_path,class: "nav-link btn btn-primary" %>
           <% else %>
             <%= link_to "Sign In", new_user_session_path,class: "nav-link btn btn-primary" %>
           <%end%>
         </div>
+    </div>
   </nav>
   <div class="container">
     <div class="col-md-6 col-md-offset-3">
