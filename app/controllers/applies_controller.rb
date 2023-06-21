@@ -3,7 +3,7 @@ class AppliesController < ApplicationController
 
   def index
     if current_user.applicant?
-      @job_applications = current_user.applies.all if current_user.applicant?
+      @job_applications = current_user.applies.all
     else
       @user = User.find(params[:user_id])
       @job = @user.jobs.find(params[:job_id])
