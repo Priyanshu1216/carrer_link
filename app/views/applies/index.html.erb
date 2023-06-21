@@ -1,9 +1,21 @@
-<h2>Total applications: <%= @applies.count %></h2>
+<% if current_user.client? %>
+  <h2>Total applications: <%= @applies.count %></h2>
+    <ul>
+    <% @applies.each do |application|%>
+      <li>
+        <%= link_to application.name, apply_path(application.id) %>
+      </li>
+      <br>
+    <% end %>
+    </ul>
+<%else%>
+  <h2>Total applications: <%= @job_applications.count %></h2>
   <ul>
-  <% @applies.each do |application|%>
+  <% @job_applications.each do |application|%>
     <li>
-      <%= link_to application.name, apply_path(application.id) %>
+      <%= application.job.title %>
     </li>
     <br>
   <% end %>
   </ul>
+<%end%>

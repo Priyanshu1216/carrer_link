@@ -2,9 +2,13 @@ class AppliesController < ApplicationController
   before_action :applicant_details ,only: :new_apply
 
   def index
-    @user = User.find(params[:user_id])
-    @job = @user.jobs.find(params[:job_id])
-    @applies = @job.applicants.all
+    if current_user.applicant?
+      @job_applications = current_user.applies.all if current_user.applicant?
+    else
+      @user = User.find(params[:user_id])
+      @job = @user.jobs.find(params[:job_id])
+      @applies = @job.applicants.all
+    end
   end
 
   def show
