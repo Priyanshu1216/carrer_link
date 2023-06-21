@@ -1,6 +1,5 @@
 class ApplicantsController < ApplicationController
   def new
-    byebug
     @job = Job.find(params[:id])
     @applicant = @job.applicants.new
   end
@@ -9,7 +8,6 @@ class ApplicantsController < ApplicationController
     @job = Job.find(params[:id])
     @applicant = @job.applicants.new(applicant_params)
     if @applicant.save
-      byebug
       redirect_to applicant_path(id: @applicant.id, job_id: @job.id)
     else
       render :new

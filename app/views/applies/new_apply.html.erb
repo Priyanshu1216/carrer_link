@@ -1,0 +1,5 @@
+<h2>Hi, <%= current_user.name %></h2>
+<h2>You job application for "<%= @applies.job.title %>" has been submited succefully</h2>
+<div id="links">
+  <%= link_to "Back", root_path, class: "btn btn-sm btn-default" %>
+</div>
