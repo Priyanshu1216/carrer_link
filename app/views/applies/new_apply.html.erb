@@ -1,5 +1,38 @@
-<h2>Hi, <%= current_user.name %></h2>
-<h2>You job application for "<%= @applies.job.title %>" has been submited succefully</h2>
-<div id="links">
-  <%= link_to "Back", root_path, class: "btn btn-sm btn-default" %>
-</div>
+<h1>New Applicant</h1>
+
+<%= form_for :user do |form| %>
+  <div>
+    <%= form.label :date_of_birth %><br>
+    <%= form.date_field :dob %>
+  </div>
+
+  <div>
+    <%= form.label :qualification %><br>
+    <%= form.text_field :qualification %>
+  </div>
+
+  <div>
+    <%= form.label :skills %><br>
+    <%= form.text_field :skills %>
+  </div>
+
+  <div>
+    <%= form.label :hobbies %><br>
+    <%= form.text_field :hobbies %>
+  </div>
+
+  <div>
+    <%= form.label :description %><br>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.label :address %><br>
+    <%= form.text_area :address %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+
+<% end %>

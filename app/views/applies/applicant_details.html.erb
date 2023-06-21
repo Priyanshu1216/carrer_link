@@ -1,24 +1,34 @@
 <h1>New Applicant</h1>
 
-<%= form_with model: @apply do |form| %>
+<%= form_with model: @user do |form| %>
   <div>
-    <%= form.label :name %><br>
-    <%= form.text_field :name %>
+    <%= form.label :date_of_birth %><br>
+    <%= form.date_field :dob %>
   </div>
 
   <div>
-    <%= form.label :email %><br>
-    <%= form.email_field :email %>
-  </div>
-
-  <div>
-    <%= form.label :contact %><br>
-    <%= form.text_field :contact %>
+    <%= form.label :qualification %><br>
+    <%= form.text_field :qualification %>
   </div>
 
   <div>
     <%= form.label :skills %><br>
-    <%= form.text_area :skills %>
+    <%= form.text_field :skills %>
+  </div>
+
+  <div>
+    <%= form.label :hobbies %><br>
+    <%= form.text_field :hobbies %>
+  </div>
+
+  <div>
+    <%= form.label :description %><br>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.label :address %><br>
+    <%= form.text_area :address %>
   </div>
 
   <div>

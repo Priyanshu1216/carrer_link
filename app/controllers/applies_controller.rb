@@ -1,5 +1,5 @@
 class AppliesController < ApplicationController
-  before_action :applicant_details ,only: :new_apply
+  # before_action :applicant_details ,only: :new_apply
 
   def index
     if current_user.applicant?
@@ -16,8 +16,18 @@ class AppliesController < ApplicationController
   end
 
   def new_apply
+    # render :applicant_details
+    byebug
     @applies = Apply.new(job_id: params[:job_id], user_id: current_user.id)
+
     @applies.save
+    # redirect_to apply_path(current_user.id)
+  end
+
+  def destroy
+    @apply = Apply.find(params[:id])
+    @apply.destroy
+    redirect_to root_path
   end
 
   def applicant_details

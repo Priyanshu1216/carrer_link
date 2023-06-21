@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   resources :applicants
   resources :applies
   get "new_application", to: "applies#new_apply"
+  post "new_application", to: "applies#new_apply"
 end

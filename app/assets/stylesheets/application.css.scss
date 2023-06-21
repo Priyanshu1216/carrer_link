@@ -52,6 +52,12 @@ body {
 	border: none;
 }
 
+.no-line-break {
+  display: inline-block;
+  margin-bottom: 0;
+}
+
+
 .navbar-brand {
 	text-transform: camelcase;
 	letter-spacing: -1px;
