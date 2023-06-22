@@ -23,7 +23,6 @@
     </p>
     <%if current_user.applicant?%>
       <button class="btn btn-default">
-        <%byebug%>
         <%= link_to "Apply for Job", new_profile_path(job_id: @job.id) %>
       </button>
     <%end%>

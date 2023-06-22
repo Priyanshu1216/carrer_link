@@ -1,12 +1,10 @@
 class ProfilesController < ApplicationController
   def new
-    byebug
     $job = Job.find(params[:job_id])
     @profile = Profile.new
   end
 
   def create
-    byebug
     @profile = Profile.new(profile_params)
     if @profile.save!
       redirect_to new_application_path(job_id: $job.id)
