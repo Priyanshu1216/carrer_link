@@ -7,16 +7,18 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <nav class="navbar navbar-default">
-    <div class="container">
+  <nav class="navbar navbar-expand-lg navbar-default ">
+    <div class="container d-flex justify-content-end">
       <div class="navbar-brand">CarrerLink</div>
-      <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav custom-navbar">
         <li>
           <%= link_to "All Jobs", jobs_path %>
         </li>
         <li>
-          <% if user_signed_in? && current_user.client?%>
-              <%= link_to "My Jobs", client_path(id: current_user.id), class: "nav-link" %>
+          <% if user_signed_in? && current_user.client? %>
+            <%= link_to "My Jobs", client_path(id: current_user.id), class: "nav-link" %>
+          <%elsif user_signed_in? %>
+            <%= link_to "My applications",applies_url %>
           <%end%>
         </li>
         <% Category.all.each do |category| %>

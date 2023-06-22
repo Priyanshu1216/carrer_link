@@ -30,10 +30,12 @@
 </div>
 <div id="links">
   <%= link_to "Back", root_path, class: "btn btn-sm btn-default" %>
-  <% if current_user.client? %>
+  <% if current_user.client? && (@job.user.id == current_user.id) %>
     <%= link_to "Edit", edit_job_path(id:@job), class: "btn btn-sm btn-default" %>
-    <%= link_to "Delete",job_path(id:@job), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-default" %>
     <%= link_to "All applications", applies_url(user_id:current_user.id,job_id:@job.id), class: "btn btn-sm btn-default"%>
+    <br></br>
+    <%= button_to "Delete job",job_path(id:@job), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+    
   <%end%>
 </div>
 

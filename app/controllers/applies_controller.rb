@@ -1,10 +1,13 @@
 class AppliesController < ApplicationController
-  before_action :applicant_details ,only: :new_apply
 
   def index
-    @user = User.find(params[:user_id])
-    @job = @user.jobs.find(params[:job_id])
-    @applies = @job.applicants.all
+    if current_user.applicant?
+      @job_applications = current_user.applies.all
+    else
+      @user = User.find(params[:user_id])
+      @job = @user.jobs.find(params[:job_id])
+      @applies = @job.applicants.all
+    end
   end
 
   def show
@@ -13,10 +16,13 @@ class AppliesController < ApplicationController
 
   def new_apply
     @applies = Apply.new(job_id: params[:job_id], user_id: current_user.id)
+
     @applies.save
-    redirect_to root_path
   end
 
-  def applicant_details
+  def destroy
+    @apply = Apply.find(params[:id])
+    @apply.destroy
+    redirect_to root_path
   end
 end

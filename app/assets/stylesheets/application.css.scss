@@ -52,9 +52,15 @@ body {
 	border: none;
 }
 
+.no-line-break {
+  display: inline-block;
+  margin-bottom: 0;
+}
+
+
 .navbar-brand {
 	text-transform: camelcase;
-	letter-spacing: -1px;
+	letter-spacing: 1px;
 	font-size: 4em;
 	font-weight: 300;
 	color: #1D976C !important;

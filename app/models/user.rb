@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   has_many :jobs, dependent: :destroy
   has_many :applies, dependent: :destroy
+  has_one :profile, dependent: :destroy
   def default_role
     self.role ||= :applicant
   end
