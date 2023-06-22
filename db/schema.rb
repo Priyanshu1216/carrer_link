@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_21_174049) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_22_172813) do
   create_table "applies", force: :cascade do |t|
     t.integer "job_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.integer "status", default: 0
     t.index ["job_id"], name: "index_applies_on_job_id"
     t.index ["user_id"], name: "index_applies_on_user_id"
   end

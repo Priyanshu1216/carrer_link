@@ -4,7 +4,7 @@
     <% @applies.each do |application|%>
       <li>
         <% applicant = User.find(application.user_id)%>
-        <%= link_to applicant.profile.name, apply_path(id:application.user_id,apply_id:application.id) %>
+        <%= link_to applicant.profile&.name, apply_path(id:application.user_id,apply_id:application.id) %>
       </li>
       <br>
     <% end %>

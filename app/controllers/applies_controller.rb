@@ -28,13 +28,14 @@ class AppliesController < ApplicationController
   end
 
   def accept
-    @apply = Apply.find(params[:apply_id])
-    @apply.accepted!
+    apply = Apply.find(params[:apply_id])
+    apply.update(status: 1)
+    flash[:alert] = "You just accepted a application"
+    redirect_to root_path
   end
 
   def reject
     apply = Apply.find(params[:apply_id])
-    # apply.rejected!
     apply.delete
     redirect_to root_path
   end
