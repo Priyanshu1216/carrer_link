@@ -18,6 +18,7 @@ class AppliesController < ApplicationController
     @applies = Apply.new(job_id: params[:job_id], user_id: current_user.id)
 
     @applies.save
+    byebug
   end
 
   def destroy

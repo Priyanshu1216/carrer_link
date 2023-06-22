@@ -13,5 +13,5 @@ Rails.application.routes.draw do
   resources :profiles
   resources :applies
   get "new_application", to: "applies#new_apply"
-  post "new_application", to: "applies#new_apply"
+  # post "new_application", to: "applies#new_apply"
 end
