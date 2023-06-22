@@ -11,7 +11,14 @@ Rails.application.routes.draw do
   resources :clients
   resources :jobs
   resources :profiles
-  resources :applies
+  # resources :applies
   get "new_application", to: "applies#new_apply"
+  resources :applies do
+    member do
+      get 'accept'
+      get 'reject'
+    end
+  end
+
   # post "new_application", to: "applies#new_apply"
 end

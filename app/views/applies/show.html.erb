@@ -5,3 +5,8 @@
 <h3><%= @apply.profile.skills %></h3>
 <h3><%= @apply.profile.address %></h3>
 <h3><%= @apply.profile.contact %></h3>
+<div id="links">
+  <%= link_to "Back", root_path, class: "btn btn-sm btn-default" %>
+</div>
+<%= link_to "Accept", accept_apply_path(apply_id: @applies.id), method: :get, class: "btn btn-sm btn-default" %>
+<%= link_to "Reject", reject_apply_path(apply_id: @applies.id), method: :get, class: "btn btn-sm btn-default" %>
