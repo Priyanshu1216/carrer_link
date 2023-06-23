@@ -23,7 +23,7 @@
     </p>
     <%if current_user.applicant?%>
       <button class="btn btn-default">
-        <%= link_to "Apply for Job", new_application_path(job_id: @job.id) %>
+        <%= link_to "Apply for Job", new_profile_path(job_id: @job.id) %>
       </button>
     <%end%>
   </div>
