@@ -13,6 +13,21 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def edit
+    @job = Job.find(params[:job_id])
+    @profile = Profile.find(params[:profile_id])
+  end
+
+  def update
+    @profile = Profile.find(params["id"])
+    @job = Job.find(params[:profile][:job_id])
+    if @profile.update!(profile_params)
+      redirect_to new_application_path(job_id: @job.id)
+    else
+      render :edit
+    end
+  end
+
   private
 
   def profile_params

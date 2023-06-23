@@ -22,9 +22,19 @@
       <%= @job.location %>
     </p>
     <%if current_user.applicant?%>
-      <button class="btn btn-default">
-        <%= link_to "Apply for Job", new_profile_path(job_id: @job.id) %>
-      </button>
+      <% if current_user.profile.present?%>
+        <h3> You have already created a profile </h3>
+        <button class="btn btn-default">
+          <%= link_to "Update profile", edit_profile_path(profile_id:current_user.profile.id,job_id: @job.id)%>
+        </button>
+        <button class="btn btn-default">
+          <%= link_to "Apply with same profile", new_application_path(job_id:@job.id)%>
+        </button>
+      <%else%>
+        <button class="btn btn-default">
+          <%= link_to "Apply for Job", new_profile_path(job_id: @job.id) %>
+        </button>
+      <%end%>
     <%end%>
   </div>
 </div>

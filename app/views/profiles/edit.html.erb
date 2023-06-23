@@ -1,0 +1,44 @@
+<h1>Update your profile</h1>
+<%= form_with model: @profile do |form| %>
+  <%= form.hidden_field :job_id, value: @job.id %>
+  <div>
+    <%= form.hidden_field :user_id, value: current_user.id %>
+    <%= form.label :full_name %><br>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :email %><br>
+    <%= form.email_field :email %>
+  </div>
+
+  <div>
+    <%= form.label :contact %><br>
+    <%= form.text_field :contact %>
+  </div>
+
+  <div>
+    <%= form.label :date_of_birth %><br>
+    <%= form.date_field :dob %>
+  </div>
+
+  <div>
+    <%= form.label :qualification %><br>
+    <%= form.text_field :qualification %>
+  </div>
+
+  <div>
+    <%= form.label :skills %><br>
+    <%= form.text_field :skills %>
+  </div>
+
+  <div>
+    <%= form.label :address %><br>
+    <%= form.text_area :address %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+
+<% end %>
