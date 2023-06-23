@@ -1,12 +1,10 @@
 class AppliesController < ApplicationController
+  before_action :find_application, only: [:accept, :reject]
 
   def index
     if current_user.applicant?
       @job_applications = current_user.applies.all
     else
-      # @user = User.find(params[:user_id])
-      # @job = @user.jobs.find(params[:job_id])
-      # @applies = @job.applicants.all
       @applies = Apply.where(job_id: params[:job_id])
     end
   end
@@ -28,15 +26,24 @@ class AppliesController < ApplicationController
   end
 
   def accept
-    apply = Apply.find(params[:apply_id])
-    apply.update(status: 1)
+    @apply.accepted!
     flash[:alert] = "You just accepted a application"
+    ConfirmationMailer.with(user: @applicant, job: @applied_job).accept_application.deliver_now
     redirect_to root_path
   end
 
   def reject
-    apply = Apply.find(params[:apply_id])
-    apply.delete
+    @apply.delete
+    flash[:alert] = "You just rejected a application"
+    ConfirmationMailer.with(user: @applicant, job:@applied_job).reject_application.deliver_now
     redirect_to root_path
+  end
+
+  private
+
+  def find_application
+    @apply = Apply.find(params[:apply_id])
+    @applicant = User.find_by(id: @apply.user_id)
+    @applied_job = Job.find_by(id:@apply.job_id)
   end
 end
