@@ -1,4 +1,5 @@
 class JobsController < ApplicationController
+  load_and_authorize_resource
   before_action :authenticate_user!, only: [:create, :new, :destroy]
   before_action :set_job, only: [:show, :edit, :update, :destroy]
   

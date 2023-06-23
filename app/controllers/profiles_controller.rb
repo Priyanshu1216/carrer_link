@@ -1,4 +1,5 @@
 class ProfilesController < ApplicationController
+  load_and_authorize_resource
   def new
     $job = Job.find(params[:job_id])
     @profile = Profile.new
