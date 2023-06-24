@@ -1,7 +1,7 @@
-<%if @user.jobs.count != 0%>
-  <h2>Your total posted jobs: <%= @user.jobs.count %></h2>
+<%if @jobs.count != 0%>
+  <h2>Your total posted jobs: <%= @jobs.count %></h2>
   <ul>
-  <% @user.jobs.each do |job|%>
+  <% @jobs.each do |job|%>
     <li>
       <%= link_to job.title, job_path(id: job.id) %>
       <br>
@@ -19,3 +19,4 @@
 <%end%>
  <%= link_to "Back", root_path, class:"btn btn-primary" %>
 <br>
+<%= paginate @jobs %>

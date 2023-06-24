@@ -4,9 +4,9 @@ class AppliesController < ApplicationController
 
   def index
     if current_user.applicant?
-      @job_applications = current_user.applies.all
+      @job_applications = current_user.applies.all.page(params[:page])
     else
-      @applies = Apply.where(job_id: params[:job_id])
+      @applies = Apply.where(job_id: params[:job_id]).page(params[:page])
     end
   end
 

@@ -1,25 +1,21 @@
-<% if current_user.client? %>
-  <h2>Total applications: <%= @applies.count %></h2>
-    <ul>
-    <% @applies.each do |application|%>
-      <li>
-        <% applicant = User.find(application.user_id)%>
-        <%= link_to applicant.profile&.name, apply_path(id:application.user_id,apply_id:application.id) %>
-      </li>
+<div id="jobs">
+  <% if current_user.client? %>
+    <h2>Total applications: <%= @applies.count %></h2>
+      <% @applies.each do |application|%>
+          <% applicant = User.find(application.user_id)%>
+          <%= link_to applicant.profile&.name, apply_path(id:application.user_id,apply_id:application.id) %>
+        <br>
+      <% end %>
+      <%= paginate @applies %>
+  <%else%>
+    <h2>Total applications: <%= @job_applications.count %></h2>
+    <% @job_applications.each do |application|%>
+        <%= application.job.title %>
+        <div id='links'>
+          <%= button_to "Delete application",apply_path(application.id), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-default" %>
+        </div>
       <br>
     <% end %>
-    </ul>
-<%else%>
-  <h2>Total applications: <%= @job_applications.count %></h2>
-  <ul>
-  <% @job_applications.each do |application|%>
-    <li>
-      <%= application.job.title %>
-      <div id='links'>
-        <%= button_to "Delete application",apply_path(application.id), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-default" %>
-      </div>
-    </li>
-    <br>
-  <% end %>
-  </ul>
-<%end%>
+    <%= paginate @job_applications %>
+  <%end%>
+</div>
