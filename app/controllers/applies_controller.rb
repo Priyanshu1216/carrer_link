@@ -16,14 +16,14 @@ class AppliesController < ApplicationController
   end
 
   def new_apply
-    # @applies = Apply.new(job_id: params[:job_id], user_id: current_user.id)
-    # @applies.save
-    existing_apply = Apply.find_by(job_id: params[:job_id], user_id: current_user.id)
-    if existing_apply
+    @existing_apply = Apply.find_by(job_id: params[:job_id], user_id: current_user.id)
+    if @existing_apply
       redirect_to root_path, alert: "You have already applied for this job."
     else
       @applies = Apply.new(job_id: params[:job_id], user_id: current_user.id)
       @applies.save
+      @job = Job.find(params[:job_id])
+      ConfirmationMailer.with(user: current_user,job: @job).application_email.deliver_now
     end
 
   end

@@ -9,8 +9,6 @@ class ProfilesController < ApplicationController
   def create
     @profile = Profile.new(profile_params)
     if @profile.save!
-      byebug
-      ConfirmationMailer.with(user: current_user,job: $job).application_email.deliver_now
       redirect_to new_application_path(job_id: $job.id)
     else
       render :new
@@ -18,7 +16,6 @@ class ProfilesController < ApplicationController
   end
 
   def edit
-    byebug
     @job = Job.find(params[:job_id])
   end
 
