@@ -1,13 +1,14 @@
 class JobsController < ApplicationController
+  load_and_authorize_resource
   before_action :authenticate_user!, only: [:create, :new, :destroy]
   before_action :set_job, only: [:show, :edit, :update, :destroy]
   
   def index
     if params[:category].blank?
-      @jobs = Job.all
+      @jobs = Job.all.page(params[:page])
     else
       @category_id = Category.find_by(name: params[:category]).id
-      @jobs = Job.where(category_id: @category_id)
+      @jobs = Job.where(category_id: @category_id).page(params[:page])
     end
   end
 

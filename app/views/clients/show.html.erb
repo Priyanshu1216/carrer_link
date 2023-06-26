@@ -1,21 +1,25 @@
-<%if @user.jobs.count != 0%>
-  <h2>Your total posted jobs: <%= @user.jobs.count %></h2>
-  <ul>
-  <% @user.jobs.each do |job|%>
-    <li>
-      <%= link_to job.title, job_path(id: job.id) %>
-      <br>
-      <%= job.description%>
-    </li>
-    <br>
-  <% end %>
-  </ul>
-  <h3>Thought of something new?? Create here</h3>
-    <%= link_to "New Job", new_job_path, class:"btn btn-primary" %>
-<%else%>
-  <h2>You haven't posted any job</h2>
-  <h3>Thought of something new?? Create here</h3>
-    <%= link_to "New Job", new_job_path, class:"btn btn-primary" %>
-<%end%>
- <%= link_to "Back", root_path, class:"btn btn-primary" %>
-<br>
+<div id="jobs">
+  <%if @jobs.count != 0%>
+    <!-- <h5>Your total posted jobs: <%= @jobs.count %></h5> -->
+    <% @jobs.each do |job|%>
+    <div class="job">
+        <h2><%= link_to job.title, job_path(id: job.id) %></h2>
+        <p><%= job.description%></p>
+    </div>
+    <% end %>
+    <!-- <h3>Thought of something new?? Create here</h3> -->
+    <div id="links">
+      <%= link_to "New Job", new_job_path, class:"btn btn-sm btn-default" %>
+      <%= link_to "Back", root_path, class:"btn btn-sm btn-default" %>
+    </div>
+  <%else%>
+    <h2>You haven't posted any job</h2>
+    <h3>Thought of something new?? Create here</h3>
+    <div id="links">
+      <%= link_to "New Job", new_job_path, class:"btn btn-sm btn-default" %>
+      <%= link_to "Back", root_path, class:"btn btn-sm btn-default" %>
+    </div>
+  <%end%>
+  <br>
+  <%= paginate @jobs %>
+</div>

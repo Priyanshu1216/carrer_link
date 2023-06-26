@@ -1,4 +1,5 @@
 class ProfilesController < ApplicationController
+  load_and_authorize_resource
   def new
     $job = Job.find(params[:job_id])
     @profile = Profile.new
@@ -7,9 +8,26 @@ class ProfilesController < ApplicationController
   def create
     @profile = Profile.new(profile_params)
     if @profile.save!
+      byebug
+      ConfirmationMailer.with(user: current_user,job: $job).application_email.deliver_now
       redirect_to new_application_path(job_id: $job.id)
     else
       render :new
+    end
+  end
+
+  def edit
+    @job = Job.find(params[:job_id])
+    @profile = Profile.find(params[:profile_id])
+  end
+
+  def update
+    @profile = Profile.find(params["id"])
+    @job = Job.find(params[:profile][:job_id])
+    if @profile.update!(profile_params)
+      redirect_to new_application_path(job_id: @job.id)
+    else
+      render :edit
     end
   end
 

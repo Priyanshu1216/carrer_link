@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   after_initialize :default_role
+  after_create :welcome_email
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -14,4 +15,8 @@ class User < ApplicationRecord
   end
 
   enum  :role, applicant: 'applicant', client: 'client', suffix: true
+
+  def welcome_email
+    ConfirmationMailer.welcome_email(self).deliver_now
+  end
 end
