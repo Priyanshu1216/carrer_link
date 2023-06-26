@@ -1,13 +1,46 @@
-<h2><%= @apply.profile.name %></h2>
-<h3><%= @apply.profile.email %></h3>
-<h3><%= @apply.profile.dob %></h3>
-<h3><%= @apply.profile.qualification %></h3>
-<h3><%= @apply.profile.skills %></h3>
-<h3><%= @apply.profile.address %></h3>
-<h3><%= @apply.profile.contact %></h3>
-<br>
-<%= link_to "Accept", accept_apply_path(apply_id: @applies.id), method: :get, class: "btn btn-sm btn-default" %>
-<%= link_to "Reject", reject_apply_path(apply_id: @applies.id), method: :get, class: "btn btn-sm btn-default" %>
-<div id="links">
-  <%= link_to "Back", root_path, class: "btn btn-sm btn-default" %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title mb-4" style="font-size: 28px; color: white;"><%= @apply.profile.name %></h2>
+          <h5 class="card-subtitle mb-4" style="font-size: 22px; color: black;"><%= @apply.profile.email %></h5>
+          <div>
+            <p class="card-text mb-3" style="font-size: 20px; color: white;">
+              <strong>Date of Birth:</strong>
+              <span style="margin-left: 10px;"><%= @apply.profile.dob %></span>
+            </p>
+          </div>
+   
+          <div>
+            <p class="card-text mb-3" style="font-size: 20px; color: white;">
+              <strong>Qualification:</strong> 
+              <span style="margin-left: 10px;"><%= @apply.profile.qualification %></p>
+          </div>
+
+          <div>
+            <p class="card-text mb-3" style="font-size: 20px; color: white;"><strong>Skills:</strong>
+            <span style="margin-left: 10px;"><%= @apply.profile.skills %></p>
+          </div>
+
+          <div>
+            <p class="card-text mb-3" style="font-size: 20px; color: white;"><strong>Address:</strong>
+            <span style="margin-left: 10px;"><%= @apply.profile.address %></p>
+          </div>
+
+          <div>
+            <p class="card-text mb-4" style="font-size: 20px; color: white;"><strong>Contact:</strong> 
+            <span style="margin-left: 10px;"><%= @apply.profile.contact %></p>
+          </div>
+          <br>
+          <div class="mt-4">
+            <%= link_to "Accept", accept_apply_path(apply_id: @applies.id), method: :get, class: "btn btn-success btn-sm mr-2" %>
+            <%= link_to "Reject", reject_apply_path(apply_id: @applies.id), method: :get, class: "btn btn-danger btn-sm mr-2" %>
+            <%= link_to "Back", root_path, class: "btn btn-sm btn-default" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+  

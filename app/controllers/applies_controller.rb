@@ -34,7 +34,7 @@ class AppliesController < ApplicationController
   end
 
   def reject
-    @apply.delete
+    @apply.rejected!
     flash[:alert] = "You just rejected a application"
     ConfirmationMailer.with(user: @applicant, job:@applied_job).reject_application.deliver_now
     redirect_to root_path
