@@ -1,54 +1,47 @@
 <div id="jobs">
   <div class="job">
-    <h2>
-      <%= @job.title %>
-    </h2>
-    <h3>
-      <%= @job.user.name %>
-    </h3>
-    <p>
-      <%= @job.user.email %>
-    </p>
-    <p>
-      <%= @job.description %>
-    </p>
-    <p>
-      <%= @job.salary %>
-    </p>
-    <p>
-      <%= @job.experience %>
-    </p>
-    <p>
-      <%= @job.location %>
-    </p>
-    <%if current_user.applicant?%>
-      <% if current_user.profile.present?%>
-        <h3> You have already created a profile </h3>
-        <button class="btn btn-default">
-          <%= link_to "Update profile", edit_profile_path(profile_id:current_user.profile.id,job_id: @job.id)%>
-        </button>
-        <button class="btn btn-default">
-          <%= link_to "Apply with same profile", new_application_path(job_id:@job.id)%>
-        </button>
-      <%else%>
-        <button class="btn btn-default">
-          <%= link_to "Apply for Job", new_profile_path(job_id: @job.id) %>
-        </button>
-        <button class="btn btn-default">
-          <%= link_to "Back", root_path %>
-        </button>
-      <%end%>
-    <%end%>
+    <h2><%= @job.title %></h2>
+    <h3><%= @job.user.name %></h3>
+    <p><%= @job.user.email %></p>
+    <p><%= @job.description %></p>
+    <p><strong>Salary:</strong> <%= @job.salary %></p>
+    <p><strong>Experience:</strong> <%= @job.experience %></p>
+    <p><strong>Location:</strong> <%= @job.location %></p>
+
+    <% if current_user.applicant? %>
+      <% if current_user.profile.present? %>
+        <% if @job.applicants.where(id: current_user.id).empty? %>
+          <h3>You have already applied for this job</h3>
+        <% else %>
+          <h3>You have already created a profile</h3>
+          <div class="btn-group">
+            <%= link_to "Update profile", edit_profile_path(profile_id: current_user.profile.id, job_id: @job.id), class: "btn btn-primary" %>
+            <%= link_to "Apply with same profile", new_application_path(job_id: @job.id), class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      <% else %>
+        <div class="btn-group">
+          <%= link_to "Apply for Job", new_profile_path(job_id: @job.id), class: "btn btn-primary" %>
+          <%= link_to "Back", root_path, class: "btn btn-default" %>
+        </div>
+      <% end %>
+    <% end %>
   </div>
 </div>
+
 <div id="links">
   <%= link_to "Back", root_path, class: "btn btn-sm btn-default" %>
   <% if current_user.client? && (@job.user.id == current_user.id) %>
-    <%= link_to "Edit", edit_job_path(id:@job), class: "btn btn-sm btn-default" %>
-    <%= link_to "All applications", applies_url(user_id:current_user.id,job_id:@job.id), class: "btn btn-sm btn-default"%>
-    <br></br>
-    <%= button_to "Delete job",job_path(id:@job), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
-    
-  <%end%>
+    <%= link_to "Edit", edit_job_path(id: @job), class: "btn btn-sm btn-default" %>
+    <%= link_to "All applications", applies_url(user_id: current_user.id, job_id: @job.id), class: "btn btn-sm btn-default" %>
+    <br><br>
+    <%= button_to "Delete job", job_path(id: @job), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+  <% end %>
 </div>
 
+<style>
+  .btn-group {
+    display: flex;
+    gap: 10px;
+  }
+</style>

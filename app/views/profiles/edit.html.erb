@@ -1,44 +1,44 @@
 <h1>Update your profile</h1>
+
 <%= form_with model: @profile do |form| %>
   <%= form.hidden_field :job_id, value: @job.id %>
-  <div>
+  <div class="form-group">
     <%= form.hidden_field :user_id, value: current_user.id %>
     <%= form.label :full_name %><br>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class: "form-control" %>
   </div>
 
-  <div>
+  <div class="form-group">
     <%= form.label :email %><br>
-    <%= form.email_field :email %>
+    <%= form.email_field :email, class: "form-control" %>
   </div>
 
-  <div>
+  <div class="form-group">
     <%= form.label :contact %><br>
-    <%= form.text_field :contact %>
+    <%= form.text_field :contact, class: "form-control" %>
   </div>
 
-  <div>
+  <div class="form-group">
     <%= form.label :date_of_birth %><br>
-    <%= form.date_field :dob %>
+    <%= form.date_field :dob, class: "form-control" %>
   </div>
 
-  <div>
+  <div class="form-group">
     <%= form.label :qualification %><br>
-    <%= form.text_field :qualification %>
+    <%= form.text_field :qualification, class: "form-control" %>
   </div>
 
-  <div>
+  <div class="form-group">
     <%= form.label :skills %><br>
-    <%= form.text_field :skills %>
+    <%= form.text_field :skills, class: "form-control" %>
   </div>
 
-  <div>
+  <div class="form-group">
     <%= form.label :address %><br>
-    <%= form.text_area :address %>
+    <%= form.text_area :address, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="form-group">
+    <%= form.submit class: "btn btn-primary" %>
   </div>
-
 <% end %>

@@ -33,11 +33,18 @@
             <span style="margin-left: 10px;"><%= @apply.profile.contact %></p>
           </div>
           <br>
-          <div class="mt-4">
-            <%= link_to "Accept", accept_apply_path(apply_id: @applies.id), method: :get, class: "btn btn-success btn-sm mr-2" %>
-            <%= link_to "Reject", reject_apply_path(apply_id: @applies.id), method: :get, class: "btn btn-danger btn-sm mr-2" %>
-            <%= link_to "Back", root_path, class: "btn btn-sm btn-default" %>
-          </div>
+          <%if @applies.status == 'accepted'%>
+            <h3>You have already accepted this application</h3>
+          <%elsif @applies.status == 'rejected'%>
+            <h3>You have already rejected this application</h3>
+          <%else%>
+            <div class="mt-4">
+              <%byebug%>
+              <%= link_to "Accept", accept_apply_path(apply_id: @applies.id), method: :get, class: "btn btn-success btn-sm mr-2" %>
+              <%= link_to "Reject", reject_apply_path(apply_id: @applies.id), method: :get, class: "btn btn-danger btn-sm mr-2" %>
+              <%= link_to "Back", root_path, class: "btn btn-sm btn-default" %>
+            </div>
+          <%end%>
         </div>
       </div>
     </div>
