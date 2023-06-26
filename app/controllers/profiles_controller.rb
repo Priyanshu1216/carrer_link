@@ -1,4 +1,5 @@
 class ProfilesController < ApplicationController
+  before_action :find_profile, only: :edit
   load_and_authorize_resource
   def new
     $job = Job.find(params[:job_id])
@@ -17,8 +18,8 @@ class ProfilesController < ApplicationController
   end
 
   def edit
+    byebug
     @job = Job.find(params[:job_id])
-    @profile = Profile.find(params[:profile_id])
   end
 
   def update
@@ -35,5 +36,9 @@ class ProfilesController < ApplicationController
 
   def profile_params
     params.require(:profile).permit(:user_id,:name,:email,:contact,:dob,:qualification,:skills,:address)
+  end
+
+  def find_profile
+    @profile = Profile.find(params[:profile_id])
   end
 end

@@ -1,6 +1,5 @@
-<h2> Hi, <%= current_user.name%></h2
-<h2>Your job application for " <%=@applies.job.title %>" has been submitted successfully!</h2>
-<h2>A Confirmation email has been sent to you, check your inbox</h2>
+<h2> Hi,<%= current_user.name%></h2>
+<h3>Your job application for " <%=@applies.job.title %>" has been submitted successfully!<br>A Confirmation email has been sent to you, check your inbox</h3>
 <div id='links'>
   <%= link_to  "Back", jobs_path,class:'btn btn-sm btn-default'%>
 </div>
