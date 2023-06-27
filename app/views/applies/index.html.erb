@@ -4,7 +4,8 @@
     <% @applies.each do |application| %>
       <div class="job">
         <% applicant = User.find(application.user_id) %>
-        <h2><%= link_to applicant.profile&.name, apply_path(id: application.user_id, apply_id: application.id) %></h2>
+        <h2><%= link_to applicant.profile&.name, apply_path(id: application.id, user_id: application.user_id) %>
+        </h2>
       </div>
     <% end %>
     <br>

@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :after_sign_up
+  # before_action :after_sign_up
 
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -26,6 +26,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_up
+    byebug
     if user_signed_in? && current_user.client?
       clients_url
     else 

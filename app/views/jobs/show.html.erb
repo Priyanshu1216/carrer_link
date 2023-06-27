@@ -10,7 +10,7 @@
 
     <% if current_user.applicant? %>
       <% if current_user.profile.present? %>
-        <% if @job.applicants.where(id: current_user.id).empty? %>
+        <% if @job.applicants.where(id: current_user.id).present? %>
           <h3>You have already applied for this job</h3>
         <% else %>
           <h3>You have already created a profile</h3>

@@ -11,8 +11,8 @@ class AppliesController < ApplicationController
   end
 
   def show
-    @applies = Apply.find(params[:apply_id])
-    @apply = User.find(params[:id])
+    @applies = Apply.find(params[:id])
+    @apply = User.find(params[:user_id])
   end
 
   def new_apply
