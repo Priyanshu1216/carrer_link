@@ -1,26 +1,26 @@
 <div id="jobs">
   <% if current_user.client? %>
     <h3>Total applications: <%= @applies.count %></h3>
-      <% @applies.each do |application|%>
+    <% @applies.each do |application| %>
       <div class="job">
-        <% applicant = User.find(application.user_id)%>
-        <h2><%= link_to applicant.profile&.name, apply_path(id:application.user_id,apply_id:application.id) %></h2>
+        <% applicant = User.find(application.user_id) %>
+        <h2><%= link_to applicant.profile&.name, apply_path(id: application.user_id, apply_id: application.id) %></h2>
       </div>
-      <% end %>
-      <br
-      <%= paginate @applies %>
-  <%else%>
-    <% @job_applications.each do |application|%>
-    <div class="job">
-      <h2><%= application.job.title %></h2>
-        <div id='links text-right'>
-          <%= button_to "Delete application",apply_path(application.id), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-default" %>
+    <% end %>
+    <br>
+    <%= paginate @applies %>
+  <% else %>
+    <% @job_applications.each do |application| %>
+      <div class="job">
+        <h2><%= application.job.title %></h2>
+        <div class="button-group">
+          <%= button_to "Delete application", apply_path(application.id), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-default", style: "float: left; margin-right: 10px;" %>
+          <%= button_tag application.status, class: "btn btn-sm btn-default", style: "float: left;" %>
         </div>
-    </div>
+        <div style="clear: both;"></div>
+      </div>
     <% end %>
     <br>
     <%= paginate @job_applications %>
-  <%end%>
+  <% end %>
 </div>
-
-
