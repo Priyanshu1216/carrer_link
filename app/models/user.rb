@@ -1,8 +1,6 @@
 class User < ApplicationRecord
   after_initialize :default_role
   after_create :welcome_email
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
@@ -10,6 +8,8 @@ class User < ApplicationRecord
   has_many :applies, dependent: :destroy
   has_many :applicants, through: :applies, dependent: :destroy
   has_one :profile, dependent: :destroy
+  validates :name, presence: true
+  
   def default_role
     self.role ||= :applicant
   end
