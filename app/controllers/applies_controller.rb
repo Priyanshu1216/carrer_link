@@ -25,7 +25,6 @@ class AppliesController < ApplicationController
       @job = Job.find(params[:job_id])
       ConfirmationMailer.with(user: current_user,job: @job).application_email.deliver_now
     end
-
   end
 
   def destroy

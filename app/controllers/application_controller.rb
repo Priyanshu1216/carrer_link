@@ -32,5 +32,4 @@ class ApplicationController < ActionController::Base
       jobs_path
     end
   end
-
 end
