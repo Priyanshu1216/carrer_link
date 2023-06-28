@@ -4,13 +4,14 @@
     <h3><%= @job.user.name %></h3>
     <p><%= @job.user.email %></p>
     <p><%= @job.description %></p>
+    <p><strong>Skills:</strong> <%= @job.skillset %></p>
     <p><strong>Salary:</strong> <%= @job.salary %></p>
     <p><strong>Experience:</strong> <%= @job.experience %></p>
     <p><strong>Location:</strong> <%= @job.location %></p>
 
     <% if current_user.applicant? %>
       <% if current_user.profile.present? %>
-        <% if @job.applicants.where(id: current_user.id).empty? %>
+        <% if @job.applicants.where(id: current_user.id).present? %>
           <h3>You have already applied for this job</h3>
         <% else %>
           <h3>You have already created a profile</h3>

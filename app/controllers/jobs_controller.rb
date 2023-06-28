@@ -1,6 +1,6 @@
 class JobsController < ApplicationController
+  before_action :authenticate_user!
   load_and_authorize_resource
-  before_action :authenticate_user!, only: [:create, :new, :destroy]
   before_action :set_job, only: [:show, :edit, :update, :destroy]
   
   def index
@@ -35,7 +35,7 @@ class JobsController < ApplicationController
     if @job.update(job_params)
       redirect_to @job
     else
-      render :edit 
+      render :edit
     end
   end
 
@@ -52,7 +52,6 @@ class JobsController < ApplicationController
   end
 
   def job_params
-    params.require(:job).permit(:title,:description,:salary,:experience,:location,:user_id,:category_id)
+    params.require(:job).permit(:title,:description,:skillset,:salary,:experience,:location,:user_id,:category_id)
   end
-
 end
