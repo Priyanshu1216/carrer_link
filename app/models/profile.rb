@@ -5,13 +5,13 @@ class Profile < ApplicationRecord
   validates :contact, length: {:is => 10}
   validates :qualification, length: {minimum: 4}
   validates :address, length: {:in => 5..30}
-  validate :date_of_birth
+  # validate :date_of_birth
 
   private
 
-  def date_of_birth
-    if dob.present? && dob > 18.years.ago.to_date.today
-      errors.add(:dob, "must be at least 18 years ago")
-    end
-  end
+  # def date_of_birth
+  #   if dob.present? && (dob < Date.today - 18.years)
+  #     errors.add(:dob, "must be at least 18 years ago")
+  #   end
+  # end
 end

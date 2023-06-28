@@ -1,7 +1,8 @@
 class ProfilesController < ApplicationController
+  before_action :authenticate_user!
   before_action :find_profile, only: :edit
   load_and_authorize_resource
-  
+
   def new
     $job = Job.find(params[:job_id])
     @profile = Profile.new
