@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_27_110334) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_28_080319) do
+  create_table "applicants", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.integer "contact"
+    t.text "skills"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "applies", force: :cascade do |t|
     t.integer "job_id", null: false
     t.datetime "created_at", null: false
@@ -23,6 +32,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_27_110334) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "clients", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.text "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
