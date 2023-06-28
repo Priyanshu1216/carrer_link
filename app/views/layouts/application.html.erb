@@ -9,6 +9,8 @@
     /* Custom CSS for navbar */
     .navbar {
       background-color: #f8f9fa;
+      widht: 100%;
+      padding: 10px;
     }
     
     .navbar-brand {
@@ -43,8 +45,8 @@
 
     .sign-out-btn {
       position: absolute;
-      top: 27px;
-      right: 80px;
+      top: 20px;
+      right: 70px;
     }
   </style>
 </head>
@@ -72,6 +74,7 @@
             </ul>
         <div class="sign-out-btn">
           <% if user_signed_in? %>
+            <%= link_to "Edit profile", edit_user_registration_path(current_user), class: "btn btn-primary" %>
             <%= link_to "Sign Out", destroy_user_session_path, class: "btn btn-primary" %>
           <% end %>
         </div>
