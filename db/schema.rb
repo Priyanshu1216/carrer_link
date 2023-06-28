@@ -10,17 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_28_080319) do
-  create_table "applicants", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.integer "contact"
-    t.text "skills"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
+ActiveRecord::Schema[7.0].define(version: 2023_06_28_094853) do
   create_table "applies", force: :cascade do |t|
+    t.date "apply_date"
     t.integer "job_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -36,14 +28,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_28_080319) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "clients", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.text "address"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "jobs", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -52,10 +36,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_28_080319) do
     t.text "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id", null: false
     t.integer "category_id"
     t.string "skillset"
-    t.index ["user_id"], name: "index_jobs_on_user_id"
+    t.integer "user_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -87,6 +70,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_28_080319) do
   end
 
   add_foreign_key "applies", "jobs"
-  add_foreign_key "jobs", "users"
   add_foreign_key "profiles", "users"
 end
