@@ -1,7 +1,7 @@
 class AppliesController < ApplicationController
   before_action :authenticate_user!
+  before_action :find_apply, only: [:accept, :reject, :show, :destroy]
   load_and_authorize_resource
-  before_action :find_application, only: [:accept, :reject]
 
   def index
     if current_user.applicant?
@@ -12,8 +12,7 @@ class AppliesController < ApplicationController
   end
 
   def show
-    @applies = Apply.find(params[:id])
-    @apply = User.find(params[:user_id])
+    @user = User.find(params[:user_id])
   end
 
   def new_apply
@@ -21,38 +20,31 @@ class AppliesController < ApplicationController
     if @existing_apply
       redirect_to root_path, alert: "You have already applied for this job."
     else
-      @applies = Apply.new(job_id: params[:job_id], user_id: current_user.id)
-      @applies.save
-      @job = Job.find(params[:job_id])
-      ConfirmationMailer.with(user: current_user,job: @job).application_email.deliver_now
+      @apply = Apply.new(job_id: params[:job_id], user_id: current_user.id)
+      @apply.save
     end
   end
 
   def destroy
-    @apply = Apply.find(params[:id])
     @apply.destroy
     redirect_to root_path
   end
 
   def accept
     @apply.accepted!
-    flash[:alert] = "You just accepted a application"
-    ConfirmationMailer.with(user: @applicant, job: @applied_job).accept_application.deliver_now
+    @apply.send_accept_mail
     redirect_to root_path
   end
 
   def reject
     @apply.rejected!
-    flash[:alert] = "You just rejected a application"
-    ConfirmationMailer.with(user: @applicant, job:@applied_job).reject_application.deliver_now
+    @apply.send_reject_mail
     redirect_to root_path
   end
 
   private
 
-  def find_application
-    @apply = Apply.find(params[:apply_id])
-    @applicant = User.find_by(id: @apply.user_id)
-    @applied_job = Job.find_by(id:@apply.job_id)
+  def find_apply
+    @apply = Apply.find(params[:id])
   end
 end

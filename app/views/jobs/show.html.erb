@@ -16,7 +16,7 @@
         <% else %>
           <h3>You have already created a profile</h3>
           <div class="btn-group">
-            <%= link_to "Update profile", edit_profile_path(profile_id: current_user.profile.id, job_id: @job.id), class: "btn btn-primary" %>
+            <%= link_to "Update profile", edit_profile_path(id: current_user.profile.id, job_id: @job.id), class: "btn btn-primary" %>
             <%= link_to "Apply with same profile", new_application_path(job_id: @job.id), class: "btn btn-primary" %>
           </div>
         <% end %>
