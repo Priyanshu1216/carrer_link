@@ -39,7 +39,7 @@ class AppliesController < ApplicationController
   def reject
     @apply.rejected!
     @apply.send_reject_mail
-    redirect_to root_path
+
   end
 
   private

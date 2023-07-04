@@ -1,7 +1,7 @@
 class JobsController < ApplicationController
   before_action :authenticate_user!
-  load_and_authorize_resource
   before_action :set_job, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
   
   def index
     if params[:category].blank?
