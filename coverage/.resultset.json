@@ -518,6 +518,63 @@
           null
         ]
       },
+      "/home/priyanshu/rails_work/career_link/spec/factories/categories.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null,
+          null
+        ]
+      },
+      "/home/priyanshu/rails_work/career_link/spec/factories/jobs.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null
+        ]
+      },
+      "/home/priyanshu/rails_work/career_link/spec/factories/profiles.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null
+        ]
+      },
+      "/home/priyanshu/rails_work/career_link/spec/factories/users.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null
+        ]
+      },
       "/home/priyanshu/rails_work/career_link/config/routes.rb": {
         "lines": [
           1,
@@ -609,7 +666,7 @@
           null
         ]
       },
-      "/home/priyanshu/rails_work/career_link/app/models/job.rb": {
+      "/home/priyanshu/rails_work/career_link/app/models/profile.rb": {
         "lines": [
           1,
           1,
@@ -618,48 +675,19 @@
           1,
           1,
           1,
-          1,
-          null
-        ]
-      },
-      "/home/priyanshu/rails_work/career_link/app/models/category.rb": {
-        "lines": [
-          1,
-          1,
-          null
-        ]
-      },
-      "/home/priyanshu/rails_work/career_link/app/models/apply.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
           null,
           null,
           1,
-          0,
-          0,
-          0,
           null,
           null,
-          1,
-          0,
-          0,
-          0,
           null,
           null,
-          1,
-          0,
-          0,
-          0,
+          null,
           null,
           null
         ]
       }
     },
-    "timestamp": 1688111188
+    "timestamp": 1688448574
   }
 }
