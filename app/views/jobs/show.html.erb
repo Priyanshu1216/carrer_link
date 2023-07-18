@@ -8,7 +8,6 @@
     <p><strong>Salary:</strong> <%= @job.salary %></p>
     <p><strong>Experience:</strong> <%= @job.experience %></p>
     <p><strong>Location:</strong> <%= @job.location %></p>
-
     <% if current_user.applicant? %>
       <% if current_user.profile.present? %>
         <% if @job.applicants.where(id: current_user.id).present? %>
@@ -29,7 +28,6 @@
     <% end %>
   </div>
 </div>
-
 <div id="links">
   <%= link_to "Back", root_path, class: "btn btn-sm btn-default" %>
   <% if current_user.client? && (@job.user.id == current_user.id) %>
@@ -39,7 +37,6 @@
     <%= button_to "Delete job", job_path(id: @job), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
   <% end %>
 </div>
-
 <style>
   .btn-group {
     display: flex;

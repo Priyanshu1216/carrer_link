@@ -1,29 +1,27 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_profile, only: :edit
+  before_action :set_job, only: [:new, :edit]
+  before_action :find_job, only: [:create, :update]
+  before_action :find_profile, only: [:edit, :update]
   load_and_authorize_resource
 
   def new
-    $job = Job.find(params[:job_id])
     @profile = Profile.new
   end
 
   def create
     @profile = Profile.new(profile_params)
     if @profile.save!
-      redirect_to new_application_path(job_id: $job.id)
+      redirect_to new_application_path(job_id: @job.id)
     else
       render :new
     end
   end
 
   def edit
-    @job = Job.find(params[:job_id])
   end
 
   def update
-    @profile = Profile.find(params["id"])
-    @job = Job.find(params[:profile][:job_id])
     if @profile.update!(profile_params)
       redirect_to new_application_path(job_id: @job.id)
     else
@@ -39,5 +37,13 @@ class ProfilesController < ApplicationController
 
   def find_profile
     @profile = Profile.find(params[:id])
+  end
+
+  def find_job
+    @job = Job.find(params[:profile][:job_id])
+  end
+
+  def set_job
+    @job = Job.find(params[:job_id])
   end
 end
